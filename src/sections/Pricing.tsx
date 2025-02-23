@@ -1,5 +1,7 @@
+"use client"
 import CheckIcon from "@/assets/check.svg";
 import { twMerge } from "tailwind-merge";
+import { motion } from "framer-motion"
 const pricingTiers = [
   {
     title: "Free",
@@ -57,25 +59,34 @@ const Pricing = () => {
     <section className="py-24 bg-white" >
       <div className="container">
         <div className="section-heading">
-        <h2 className="section-title">
-          Pricing
-        </h2>
-        <p className="section-description mt-5">
-          Free forever, Upgrade for unlimited tasks, better security, and exclusive features.
-        </p>
+          <h2 className="section-title">
+            Pricing
+          </h2>
+          <p className="section-description mt-5">
+            Free forever, Upgrade for unlimited tasks, better security, and exclusive features.
+          </p>
         </div>
         <div className="flex flex-col gap-6 items-center mt-10 lg:flex-row lg:items-end lg:justify-center">
           {
             pricingTiers.map(({ title, monthlyPrice, buttonText, popular, inverse, features }) => (
-              <div className={ twMerge("card", inverse === true && "border-black bg-black text-white")}>
+              <div className={twMerge("card", inverse === true && "border-black bg-black text-white")}>
                 <div className="flex justify-between ">
-                  <h3 className={ twMerge("text-lg font-bold text-black/50", inverse === true && "text-white/60" )}>{title}</h3>
+                  <h3 className={twMerge("text-lg font-bold text-black/50", inverse === true && "text-white/60")}>{title}</h3>
                   {popular === true && (
                     <div className="inline-flex text-sm px-4 py-1.5 rounded-xl border border-white/20">
-                      {/* <span className="bg-[linear-gradient(to_right,#DD7DDF,#E1CD86,#BBCB92,#71C2DF,#3DFFFF,#DD7DDF)] bg-clip-text font-medium">Popular</span> */}
-                      <span className="bg-gradient-to-r from-[#DD7DDF] via-[#E1CD86] via-[#BBCB92] via-[#71C2DF] via-[#3DFFFF] to-[#DD7DDF] font-medium bg-clip-text text-transparent">
+                      <motion.span
+                        animate={{
+                          backgroundPositionX: "200%"
+                        }}
+                        transition={{
+                          repeat: Infinity,
+                          ease: "linear",
+                          duration: 1,
+                          repeatType: "loop"
+                        }}
+                        className="bg-[linear-gradient(to_right,#DD7DDF,#E1CD86,#BBCB92,#71C2DF,#3DFFFF,#DD7DDF,#E1CD86,#BBCB92,#71C2DF,#3DFFFF)] bg-clip-text text-transparent font-medium [background-size:200%] ">
                         Popular
-                      </span>
+                      </motion.span>
                     </div>
                   )}
 
